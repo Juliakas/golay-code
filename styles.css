@@ -1,0 +1,100 @@
+body {
+    padding: 10px;
+}
+
+h1 {
+    margin-bottom: 25px;
+    font-size: 2.2rem;
+    display: inline-block;
+}
+
+.h1-wrapper {
+    text-align: center;
+}
+
+hr {
+    margin-top: 100px;
+}
+
+.transmitted-vec {
+    display: none;
+}
+
+.readonly-transmitted-vec {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.container-err-prob {
+    margin: 20px auto 10px;;
+}
+
+.vec-btn-group {
+    text-align: center;
+    padding-top: 30px;
+}
+
+.vec-btn-group > * {
+    width: 80%;
+}
+
+.container-vec-code .form-check {
+    margin-top: 10px;
+}
+
+.container-vec-code .row {
+    margin-top: 20px;
+}
+
+#textInputArea {
+    resize: vertical;
+    max-height: 200px;
+    min-height: 80px;
+}
+
+.container-text .row {
+    margin-top: 20px;
+}
+
+.text-btn-group {
+    text-align: center;
+}
+
+.text-btn-group > * {
+    width: 70%;
+}
+
+#uploadedImg {
+    margin-top: 20px;
+}
+
+.img-with-placeholder {
+    margin: auto;
+    width: auto;
+    border: dotted gray 2px;
+    height: 300px;
+}
+
+.img-cont {
+    text-align: center;
+}
+
+.img-cont .custom-file {
+    text-align: left;
+}
+
+.img-btn-group {
+    text-align: center;
+}
+
+.img-btn-group > * {
+    width: 70%;
+}
+
+.container-img .row {
+    margin-top: 20px;
+}
+
+.red-color {
+    color: #dc3545;
+}
