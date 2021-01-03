@@ -26,6 +26,7 @@ function initUI() {
     setInputFilter($('#originalVectorField')[0], val => /^[0-1]*$/.test(val));
     setInputFilter($('#transmittedVecField')[0], val => /^[0-1]*$/.test(val));
 
+
     /**
      * Initializes error probability slider UI part
      */
@@ -166,6 +167,7 @@ function initUI() {
             let fr = new FileReader();
             fr.onload = function () {
                 $('#uploadedImg')[0].src = fr.result;
+                $('#uploadedImg').css('border', 'none');
             }
             fr.readAsDataURL(file);
         });
@@ -197,7 +199,7 @@ function initUI() {
                     + btoa(imgHeader + decodedUnchangedBytes.reduce(
                         (acum, byte) => acum + String.fromCharCode(byte), ""))
                     );
-
+                $("#unchangedImg").css('border', 'none');
                 let correctedBytes = processPartitionedBits(
                     splitVectors,
                     leftoverBits,
@@ -208,6 +210,7 @@ function initUI() {
                     + btoa(imgHeader + correctedBytes.reduce(
                         (acum, byte) => acum + String.fromCharCode(byte), ""))
                     );
+                $("#correctedImg").css('border', 'none');
 
             });
         });
@@ -323,4 +326,21 @@ function testRandomVectors(times) {
             throw "Test case failed";
         }
     }
+}
+
+function testEfficienty(errProb) {
+    let code = new GolayCode();
+    let channel = new Channel(errProb);
+    let times = 10000;
+    let countCorrect = 0;
+    for (let i = 0; i < times; i++) {
+        let original = Array.from({ length: 12 }, () => Math.floor(Math.random() * 2)),
+            arr = code.encode(new Vector(original)),
+            sent = channel.transmitVector(arr),
+            decoded = code.decode(sent).getVec();
+        if (JSON.stringify(original) === JSON.stringify(decoded)) {
+            countCorrect++;
+        }
+    }
+    return countCorrect / times;
 }
